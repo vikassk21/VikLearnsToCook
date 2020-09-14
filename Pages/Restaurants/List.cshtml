@@ -1,0 +1,35 @@
+﻿@page
+@model VikLearnsToCook.Pages.Restaurants.ListModel
+@{
+    ViewData["Title"] = "Restaurants";
+}
+
+<h1>Restaurants</h1>
+
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" class="form-group" asp-for="SearchTerm" />
+            <div class="border-0">
+                <button class="btn btn-primary">
+                    Search
+                </button>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+@foreach(var restaurant in Model.Restaurants)
+{
+    <partial name="_Summary" model="restaurant" />
+}
+
+<a asp-page=".\Edit" class="btn btn-primary">Add New</a>
+
+@section footer{
+    <span class="align-self-auto">
+        @Model.Message
+    </span>
+  
+}

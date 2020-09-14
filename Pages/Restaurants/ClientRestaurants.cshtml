@@ -1,0 +1,39 @@
+﻿@page
+@model VikLearnsToCook.Pages.Restaurants.ClientRestaurantsModel
+@{
+}
+
+<h2>Restaurants data from Client API</h2>
+
+<table class="table" id="restaurants">
+
+</table>
+
+@section Scripts{
+    
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.css" />
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.js"></script>
+   
+    <script>
+
+        $(function () {
+            var cuisines = ["Cafe", "Mexican", "Italian", "Indian"];
+            $.ajax("/api/restaurants/", { method: "get" }).then(function (response) {
+                console.dir(response);
+                $("#restaurants").dataTable({
+                    data: response,
+                    columns: [
+                        { "data": "name" },
+                        { "data": "location" },
+                        {
+                            "data": "cusine", "render": function (data) {
+                                return cuisines[data];
+                            }
+                        }
+                    ]
+                });
+            });
+        });
+
+    </script>
+}

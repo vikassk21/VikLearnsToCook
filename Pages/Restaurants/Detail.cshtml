@@ -1,0 +1,26 @@
+﻿@page "{restaurantId:int}"
+
+
+@model VikLearnsToCook.Pages.Restaurants.DetailModel
+@{
+    ViewData["Title"] = "Detail";
+}
+
+@if (Model.Message != null)
+{
+    <div class="alert alert-info">@Model.Message</div>
+}
+
+<h2>@Model.Restaurant.Name</h2>
+<div>
+    Location : @Model.Restaurant.Location
+</div>
+<div>
+    Cuisine : @Model.Restaurant.Cusine
+</div>
+<div>
+    ID : @Model.Restaurant.Id
+</div>
+
+
+<a asp-page="./List" class="btn btn-info">All Restaurants</a>
